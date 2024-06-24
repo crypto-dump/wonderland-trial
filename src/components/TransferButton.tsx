@@ -4,7 +4,7 @@ import { BaseError, erc20Abi } from 'viem';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import useGetTokenAllowance from '~/hooks/useGetTokenAllowance';
 import useGetTokenBalance from '~/hooks/useGetTokenBalance';
-import { AddressStringType } from '~/types';
+import { AddressStringType, ERC20Token } from '~/types';
 
 enum ERROR_CODES {
   INSUFFICIENT_BALANCE = 'No enough funds',
@@ -12,15 +12,15 @@ enum ERROR_CODES {
 }
 
 type TransferButtonProps = {
-  contractAddress: AddressStringType;
+  token: ERC20Token;
   targetAddress: AddressStringType;
   amount: bigint;
   onUpdateError: (msg: string) => void;
 };
 
-const TransferButton = ({ contractAddress, targetAddress, amount, onUpdateError }: TransferButtonProps) => {
-  const allowance = useGetTokenAllowance({ contractAddress: contractAddress, to: targetAddress });
-  const balance = useGetTokenBalance({ contractAddress: contractAddress });
+const TransferButton = ({ token, targetAddress, amount, onUpdateError }: TransferButtonProps) => {
+  const allowance = useGetTokenAllowance({ contractAddress: token.address, to: targetAddress });
+  const balance = useGetTokenBalance({ contractAddress: token.address });
 
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
@@ -39,13 +39,13 @@ const TransferButton = ({ contractAddress, targetAddress, amount, onUpdateError 
       onUpdateError(ERROR_CODES.INSUFFICIENT_ALLOWANCE);
     } else {
       writeContract({
-        address: contractAddress,
+        address: token.address,
         abi: erc20Abi,
         functionName: 'transfer',
         args: [targetAddress, amount],
       });
     }
-  }, [onUpdateError, balance, amount, allowance, writeContract, contractAddress, targetAddress]);
+  }, [onUpdateError, balance, amount, allowance, writeContract, token.address, targetAddress]);
 
   useEffect(() => {
     if (!error) {

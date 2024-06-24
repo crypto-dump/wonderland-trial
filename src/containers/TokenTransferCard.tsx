@@ -49,7 +49,7 @@ const TokenTransferCard = ({ token: tokenByChain }: TokenTransferCardProps) => {
             <Typography>
               Token:&nbsp;<b>{token.name}</b>
             </Typography>
-            <MintButton contractAddress={token.address} amount={parseUnits(`100`, token.decimals)} />
+            <MintButton token={token} amount={parseUnits(`100`, token.decimals)} />
           </Box>
           <Typography>
             Balance:&nbsp;
@@ -71,20 +71,15 @@ const TokenTransferCard = ({ token: tokenByChain }: TokenTransferCardProps) => {
       </CardContent>
       <Box>
         <Box display='flex' alignItems='center' gap={1}>
-          <ApproveButton
-            contractAddress={token.address}
-            targetAddress={targetAddress || zeroAddress}
-            amount={bigIntAmount}
-            onUpdateError={setError}
-          />
+          <ApproveButton token={token} targetAddress={targetAddress} amount={bigIntAmount} onUpdateError={setError} />
           <TransferButton
-            contractAddress={token.address}
+            token={token}
             targetAddress={targetAddress || zeroAddress}
             amount={bigIntAmount}
             onUpdateError={setError}
           />
         </Box>
-        <ErrorLabel>{error}</ErrorLabel>
+        <ErrorLabel test-id='transaction-error-msg'>{error}</ErrorLabel>
       </Box>
     </SCard>
   );

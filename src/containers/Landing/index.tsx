@@ -10,7 +10,7 @@ import { useStateContext } from '~/hooks';
 export const Landing = () => {
   const { targetAddress } = useStateContext();
   return (
-    <LandingContainer>
+    <LandingContainer data-testid='wonderland-trial'>
       <TargetWalletSelection />
       <STypography>
         Send following tokens to <i>{targetAddress || '__'}</i>

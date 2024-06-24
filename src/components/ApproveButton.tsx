@@ -1,17 +1,17 @@
 import { Button, styled } from '@mui/material';
 import { useCallback, useEffect } from 'react';
-import { BaseError, erc20Abi } from 'viem';
+import { BaseError, erc20Abi, zeroAddress } from 'viem';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-import { AddressStringType } from '~/types';
+import { AddressStringType, ERC20Token } from '~/types';
 
 type ApproveButtonProps = {
-  contractAddress: AddressStringType;
-  targetAddress: AddressStringType;
+  token: ERC20Token;
+  targetAddress?: AddressStringType;
   amount: bigint;
   onUpdateError: (msg: string) => void;
 };
 
-const ApproveButton = ({ contractAddress, targetAddress, amount, onUpdateError }: ApproveButtonProps) => {
+const ApproveButton = ({ token, targetAddress, amount, onUpdateError }: ApproveButtonProps) => {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
   const { isLoading: isConfirming } = useWaitForTransactionReceipt({
@@ -24,12 +24,12 @@ const ApproveButton = ({ contractAddress, targetAddress, amount, onUpdateError }
     onUpdateError('');
 
     writeContract({
-      address: contractAddress,
+      address: token.address,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [targetAddress, amount],
+      args: [targetAddress ?? zeroAddress, amount],
     });
-  }, [amount, contractAddress, onUpdateError, targetAddress, writeContract]);
+  }, [amount, token.address, onUpdateError, targetAddress, writeContract]);
 
   useEffect(() => {
     if (!error) {

@@ -1,21 +1,16 @@
 import { Button, Tooltip } from '@mui/material';
 import { useCallback } from 'react';
-import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import { WTAbi } from '~/contracts/abi/WTAbi';
-import { AddressStringType } from '~/types';
+import { ERC20Token } from '~/types';
 
 type MintButtonProps = {
-  contractAddress: AddressStringType;
+  token: ERC20Token;
   amount: bigint;
 };
 
-const MintButton = ({ contractAddress, amount }: MintButtonProps) => {
+const MintButton = ({ token, amount }: MintButtonProps) => {
   const account = useAccount();
-  const { data: symbol } = useReadContract({
-    address: contractAddress,
-    abi: WTAbi,
-    functionName: 'symbol',
-  });
 
   const { data: hash, isPending, writeContract } = useWriteContract();
 
@@ -27,15 +22,15 @@ const MintButton = ({ contractAddress, amount }: MintButtonProps) => {
 
   const handleMint = useCallback(() => {
     writeContract({
-      address: contractAddress,
+      address: token.address,
       abi: WTAbi,
       functionName: 'mint',
       args: account.address ? [account.address, amount] : undefined,
     });
-  }, [account.address, amount, contractAddress, writeContract]);
+  }, [account.address, amount, token.address, writeContract]);
 
   return (
-    <Tooltip title={`Mint 100 ${symbol}`} arrow>
+    <Tooltip title={`Mint 100 ${token.symbol}`} arrow>
       <Button variant='contained' size='small' onClick={handleMint} disabled={isPendingMint}>
         {isPendingMint ? 'Minting...' : 'Mint'}
       </Button>
