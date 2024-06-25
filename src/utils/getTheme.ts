@@ -1,5 +1,5 @@
-import { darkTheme, lightTheme } from '~/components/Theme';
-import { Theme, ThemeName } from '~/types';
+import { darkTheme, lightTheme } from '@/components/Theme';
+import { Theme, ThemeName } from '@/types';
 
 export const getTheme = (theme?: ThemeName): Theme => {
   switch (theme) {

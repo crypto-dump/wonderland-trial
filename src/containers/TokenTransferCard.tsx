@@ -1,17 +1,17 @@
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import { Box, Typography, styled } from '@mui/material';
-import { ERC20TokenByChain } from '~/types';
+import { ERC20TokenByChain } from '@/types';
 import { useChainId } from 'wagmi';
 import { formatUnits, parseUnits, zeroAddress } from 'viem';
-import Input from '~/components/Input';
-import { useStateContext } from '~/hooks';
+import Input from '@/components/Input';
+import { useStateContext } from '@/hooks';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import useGetTokenAllowance from '~/hooks/useGetTokenAllowance';
-import useGetTokenBalance from '~/hooks/useGetTokenBalance';
-import ApproveButton from '~/components/ApproveButton';
-import TransferButton from '~/components/TransferButton';
-import MintButton from '~/components/MintButton';
+import useGetTokenAllowance from '@/hooks/useGetTokenAllowance';
+import useGetTokenBalance from '@/hooks/useGetTokenBalance';
+import ApproveButton from '@/components/ApproveButton';
+import TransferButton from '@/components/TransferButton';
+import MintButton from '@/components/MintButton';
 
 type TokenTransferCardProps = {
   token: ERC20TokenByChain;

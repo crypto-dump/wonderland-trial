@@ -2,9 +2,9 @@ import { Button, Typography, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { isAddress } from 'viem';
-import Input from '~/components/Input';
-import { useStateContext } from '~/hooks';
-import { AddressStringType } from '~/types';
+import Input from '@/components/Input';
+import { useStateContext } from '@/hooks';
+import { AddressStringType } from '@/types';
 
 const TargetWalletSelection = () => {
   const { setTargetAddress } = useStateContext();

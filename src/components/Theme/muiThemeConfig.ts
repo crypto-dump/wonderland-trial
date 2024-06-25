@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { Theme, ThemeName } from '~/types';
+import { Theme, ThemeName } from '@/types';
 
 export const getMuiThemeConfig = (currentTheme: Theme, themeName: ThemeName) => {
   return createTheme({

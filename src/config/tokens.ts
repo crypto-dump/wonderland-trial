@@ -1,5 +1,5 @@
 import { sepolia, polygonAmoy } from 'viem/chains';
-import { ERC20Token } from '~/types';
+import { ERC20Token } from '@/types';
 
 const DAI_SEPOLIA: ERC20Token = {
   name: 'DAI',

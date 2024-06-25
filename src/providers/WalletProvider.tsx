@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 
 import { config } from '../utils';
-import { useCustomTheme } from '~/hooks/useTheme';
+import { useCustomTheme } from '@/hooks/useTheme';
 
 type Props = {
   children: ReactNode;

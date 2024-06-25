@@ -1,11 +1,10 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
-import { SURROUND_HEIGHT } from '~/utils';
-import TargetWalletSelection from '../TargetWalletSelection';
-import TokenTransferCard from '../TokenTransferCard';
-import { DAI, USDC } from '~/config/tokens';
-import { useStateContext } from '~/hooks';
+import TargetWalletSelection from '@/containers/TargetWalletSelection';
+import TokenTransferCard from '@/containers/TokenTransferCard';
+import { DAI, USDC } from '@/config/tokens';
+import { useStateContext } from '@/hooks';
 
 export const Landing = () => {
   const { targetAddress } = useStateContext();
@@ -13,7 +12,7 @@ export const Landing = () => {
     <LandingContainer data-testid='wonderland-trial'>
       <TargetWalletSelection />
       <STypography>
-        Send following tokens to <i>{targetAddress || '__'}</i>
+        Send following tokens to <i data-testid='target-address'>{targetAddress || '__'}</i>
       </STypography>
       <TransactionContainer>
         <TokenTransferCard token={DAI} />
@@ -26,7 +25,7 @@ export const Landing = () => {
 const LandingContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  height: `calc(100vh - ${SURROUND_HEIGHT}rem)`,
+  height: `calc(100vh - 5rem)`,
   padding: '0 8rem',
   alignItems: 'center',
   justifyContent: 'center',

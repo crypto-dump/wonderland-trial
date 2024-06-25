@@ -1,6 +1,6 @@
 import { Box, CssBaseline, styled } from '@mui/material';
 
-import { Header } from '~/containers';
+import { Header } from '@/containers';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

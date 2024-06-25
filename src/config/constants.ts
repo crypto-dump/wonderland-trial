@@ -1,4 +1,4 @@
-import { Constants } from '~/types';
+import { Constants } from '@/types';
 import { DAI, USDC } from './tokens';
 
 const constants: Constants = {

@@ -2,7 +2,7 @@ import { Button, styled } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { BaseError, erc20Abi, zeroAddress } from 'viem';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-import { AddressStringType, ERC20Token } from '~/types';
+import { AddressStringType, ERC20Token } from '@/types';
 
 type ApproveButtonProps = {
   token: ERC20Token;

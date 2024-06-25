@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { AddressStringType } from '~/types';
+import { AddressStringType } from '@/types';
 
 type ContextType = {
   targetAddress: AddressStringType | undefined;

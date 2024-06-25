@@ -2,9 +2,9 @@ import { Button, styled } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { BaseError, erc20Abi } from 'viem';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-import useGetTokenAllowance from '~/hooks/useGetTokenAllowance';
-import useGetTokenBalance from '~/hooks/useGetTokenBalance';
-import { AddressStringType, ERC20Token } from '~/types';
+import useGetTokenAllowance from '@/hooks/useGetTokenAllowance';
+import useGetTokenBalance from '@/hooks/useGetTokenBalance';
+import { AddressStringType, ERC20Token } from '@/types';
 
 enum ERROR_CODES {
   INSUFFICIENT_BALANCE = 'No enough funds',

@@ -1,8 +1,8 @@
 import { Button, Tooltip } from '@mui/material';
 import { useCallback } from 'react';
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-import { WTAbi } from '~/contracts/abi/WTAbi';
-import { ERC20Token } from '~/types';
+import { WTAbi } from '@/contracts/abi/WTAbi';
+import { ERC20Token } from '@/types';
 
 type MintButtonProps = {
   token: ERC20Token;

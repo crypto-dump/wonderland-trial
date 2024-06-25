@@ -1,4 +1,4 @@
-import { Env } from '~/types';
+import { Env } from '@/types';
 
 export const getEnv = (): Env => {
   const NEXT_PUBLIC_PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID;

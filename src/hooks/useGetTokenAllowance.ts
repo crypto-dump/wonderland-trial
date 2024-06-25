@@ -1,6 +1,6 @@
 import { erc20Abi } from 'viem';
 import { useAccount, useChainId, useReadContract } from 'wagmi';
-import { AddressStringType } from '~/types';
+import { AddressStringType } from '@/types';
 
 type Props = {
   contractAddress: AddressStringType;

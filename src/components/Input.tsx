@@ -1,5 +1,5 @@
 import { InputBase, InputBaseProps, styled } from '@mui/material';
-import { useCustomTheme } from '~/hooks/useTheme';
+import { useCustomTheme } from '@/hooks/useTheme';
 
 type InputProps = InputBaseProps;
 

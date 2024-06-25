@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { Landing } from '~/containers';
+import { Landing } from '@/containers';
 
 const Home = () => {
   return (
