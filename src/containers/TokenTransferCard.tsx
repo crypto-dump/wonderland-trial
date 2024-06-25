@@ -72,12 +72,7 @@ const TokenTransferCard = ({ token: tokenByChain }: TokenTransferCardProps) => {
       <Box>
         <Box display='flex' alignItems='center' gap={1}>
           <ApproveButton token={token} targetAddress={targetAddress} amount={bigIntAmount} onUpdateError={setError} />
-          <TransferButton
-            token={token}
-            targetAddress={targetAddress || zeroAddress}
-            amount={bigIntAmount}
-            onUpdateError={setError}
-          />
+          <TransferButton token={token} targetAddress={targetAddress} amount={bigIntAmount} onUpdateError={setError} />
         </Box>
         <ErrorLabel test-id='transaction-error-msg'>{error}</ErrorLabel>
       </Box>

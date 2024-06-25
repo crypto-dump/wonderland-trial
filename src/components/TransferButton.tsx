@@ -1,6 +1,6 @@
 import { Button, styled } from '@mui/material';
 import { useCallback, useEffect } from 'react';
-import { BaseError, erc20Abi } from 'viem';
+import { BaseError, erc20Abi, zeroAddress } from 'viem';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import useGetTokenAllowance from '@/hooks/useGetTokenAllowance';
 import useGetTokenBalance from '@/hooks/useGetTokenBalance';
@@ -13,7 +13,7 @@ enum ERROR_CODES {
 
 type TransferButtonProps = {
   token: ERC20Token;
-  targetAddress: AddressStringType;
+  targetAddress?: AddressStringType;
   amount: bigint;
   onUpdateError: (msg: string) => void;
 };
@@ -42,7 +42,7 @@ const TransferButton = ({ token, targetAddress, amount, onUpdateError }: Transfe
         address: token.address,
         abi: erc20Abi,
         functionName: 'transfer',
-        args: [targetAddress, amount],
+        args: [targetAddress ?? zeroAddress, amount],
       });
     }
   }, [onUpdateError, balance, amount, allowance, writeContract, token.address, targetAddress]);
